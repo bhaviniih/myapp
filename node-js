@@ -1,0 +1,69 @@
+  =========== Node js and mysql install and CRUD operation use API 2020/02/25/18/21 ===============
+
+  // create a package.json file
+  npm init 
+
+  // dependencies list of your package.json file
+  npm install express
+
+  // node install
+  npm install
+
+  // serverless-http
+  npm install --save serverless-http
+
+  //
+  npm audit fix
+
+  // install sequelize
+  npm install sequelize
+  npm install sqlite3
+  npm install sequelize-cli
+
+  // list of command sequelize
+  npx sequelize help
+
+  //
+  npx sequelize init
+
+  // install mysql server
+  npm install --save mysql2
+
+  // user migrations
+  npm install --save serverless-sequelize-migrations
+
+  // create module and model
+  npx sequelize-cli model:generate --name Product --attributes name:string,price:float
+
+  // rcreate seeder
+  npx sequelize-cli seed:generate --name product
+
+  // run migration
+  npx sequelize-cli db:migrate
+
+  // run seeder
+  npx sequelize-cli db:seed:all
+
+  // validation
+  npm install --save express-validation
+  or
+  npm install --save express-validation@^0.4.5 joi@^7.2.3
+
+  // validation message
+  npm install joi
+  or
+  npm install @hapi/joi
+
+
+
+
+
+==== Node work flow ====
+
+->app.js
+  -> routes
+     -> database
+        -> sql connection
+        -> model
+     -> controller
+     -> validation

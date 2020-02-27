@@ -14,4 +14,12 @@ routes.put("/:id", validate(productValidate.put), productController.put);
 routes.delete("/:id", productController.deleteproduct);
 
 
+
+routes.get("/email/template", productController.email);
+
+
 module.exports = routes;
+
+
+
+

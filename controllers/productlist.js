@@ -144,3 +144,26 @@ module.exports.deleteproduct = deleteproduct = async (req, res) => {
     })
   })
 }
+
+
+// mail
+module.exports.email = email = async (req, res) => {
+
+  res.mailer.send('email', {
+    to: 'bhavin.iihglobal@gmail.com',
+    subject: 'Test Email Node Js',
+    otherProperty: 'Other Property'
+  }, function (err, message) {
+    if (err) {
+      // handle error
+      console.log(err);
+      res.send('There was an error rendering the email');
+      return;
+    }
+    res.header('Content-Type', 'text/plain');
+    // res.send(message);
+    res.send('Email Sent');
+  });
+
+
+}

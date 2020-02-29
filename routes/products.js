@@ -1,10 +1,16 @@
 const express = require("express");
+// const app = express();
 const routes = express.Router();
 const connectToDatabase = require('../config/database');
 const validate = require('express-validation')
 const productValidate = require('../validation/productlist')
 const productController = require('../controllers/productlist')
 const bodyParser = require("body-parser");
+
+
+/*app.get('/', passport.authenticate('jwt', { session: false }), function(req, res) {
+	res.json({ msg: 'Congrats! You are seeing this because you are authorized'});
+});*/
 
 
 routes.get("/", productController.list);

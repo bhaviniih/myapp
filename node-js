@@ -57,6 +57,26 @@
 
 
 
+==== Mail Send ====
+
+  // mail send (https://www.npmjs.com/package/express-mailer)
+  npm install express-mailer
+
+  // html file
+  npm install jade --save
+  npm install
+
+
+
+==== Auth in Node Js ====
+
+  //
+  npm install passport jsonwebtoken passport-jwt --save
+
+  or
+  //
+  npm install passport passport-local --save
+
 
 ==== Node work flow ====
 

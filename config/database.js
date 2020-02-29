@@ -1,6 +1,7 @@
 const mysql = require('mysql2');
 const Sequelize = require('sequelize')
 
+const UserModel = require('../models/user')
 const ProductModel = require('../models/product')
 
 
@@ -26,9 +27,10 @@ sequelize
         });
 
 
+const UserList = UserModel(sequelize, Sequelize)
 const ProductList = ProductModel(sequelize, Sequelize)
 
-const Models = { ProductList }
+const Models = { UserList, ProductList }
 const connection = {}
 
 module.exports = async () => {

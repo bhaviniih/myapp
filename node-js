@@ -78,6 +78,11 @@
   npm install passport passport-local --save
 
 
+==== create pdf ====
+
+  //
+  
+
 ==== Node work flow ====
 
 ->app.js
@@ -107,3 +112,4 @@
 - DocBlockr
 - Git integration
 - SideBarEnhancements
+- Xdebug

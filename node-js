@@ -78,9 +78,13 @@
   npm install passport passport-local --save
 
 
-==== create pdf ====
+==== set env veriable ====
 
   //
+  npm install dotenv
+
+  //
+  
   
 
 ==== Node work flow ====

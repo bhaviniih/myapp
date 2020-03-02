@@ -37,31 +37,31 @@ module.exports.list = list = async (req, res) => {
 module.exports.post = post = async (req, res) => {
   let name  = req.body.name;
   let price = req.body.price;
-    const { ProductList } = await connectToDatabase()
+  const { ProductList } = await connectToDatabase()
 
-    ProductList.findAll({attributes:['id', 'name', 'price'] , where:{name: name, price: price}})
-    .then(data => {
-      if(!data.length){
+  ProductList.findAll({attributes:['id', 'name', 'price'] , where:{name: name, price: price}})
+  .then(data => {
+    if(!data.length){
       ProductList.create({
         name : name,
         price : price
       })
-    .then( result => {
-      res.json({
-        'status':true,
-        'message':'INSERT_SUCCESS',
-        result
-      });
+      .then( result => {
+        res.json({
+          'status':true,
+          'message':'INSERT_SUCCESS',
+          result
+        });
       })
-    .catch(err => {
-      res.json({
-          'status':false,
-          'message':'SOMETHING_WRONG',
-          err
-        })
-    });
-      }
-    })
+      .catch(err => {
+        res.json({
+            'status':false,
+            'message':'SOMETHING_WRONG',
+            err
+          })
+      });
+    }
+  })
 }
 
 // get single

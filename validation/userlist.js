@@ -15,3 +15,10 @@ module.exports.logincheck = {
 		password: Joi.string().required().label("Password is required."),
 	}
 };
+
+module.exports.put = {
+	body: {
+		name: Joi.string().required().label("Name is required."),
+		email: Joi.string().required().label("Email is required."),
+	}
+};

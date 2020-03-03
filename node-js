@@ -80,11 +80,12 @@
 
 ==== set env veriable ====
 
-  //
+  // env file
   npm install dotenv
 
-  //
-  
+==== create pdf ====
+
+  // pdf
   
 
 ==== Node work flow ====

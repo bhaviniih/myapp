@@ -173,10 +173,7 @@ module.exports.email = email = async (req, res) => {
 // product lists
 module.exports.productlists = productlists = async (req, res) => {
   const { ProductList } = await connectToDatabase()
-
-  var id = 1;
   ProductList.findAll({attributes:['id','name','price'], raw: true}) // ProductList.findAll({})
-  // ProductList.findAll({attributes:['id','name','price'], where:{'id' : id}, raw: true})
   .then(productlists => {
     res.render('products/product', {
       results: productlists
@@ -210,10 +207,10 @@ module.exports.productsave = productsave = async (req, res) => {
       })
       .catch(err => {
         res.json({
-            'status':false,
-            'message':'SOMETHING_WRONG',
-            err
-          })
+          'status':false,
+          'message':'SOMETHING_WRONG',
+          err
+        })
       });
     }
   })
@@ -224,38 +221,38 @@ module.exports.productupdate = productupdate = async (req, res) => {
   let id   = req.body.id;
   let name = req.body.product_name;
   let price = req.body.product_price;
-    const { ProductList } = await connectToDatabase()
+  const { ProductList } = await connectToDatabase()
 
-    ProductList.findByPk(id)
-    .then(data => {
-      if(data){
-        ProductList.update(
-          { name: name, price: price }, { where: { id: id } 
-        })
-        .then( result => {
-          return res.redirect('lists');
-        })
-        .catch(err => {
-          res.json({
-              'status':false,
-              'message':'SOMETHING_WRONG',
-              err
-            })
-        });
-      }else{
+  ProductList.findByPk(id)
+  .then(data => {
+    if(data){
+      ProductList.update(
+        { name: name, price: price }, { where: { id: id } 
+      })
+      .then( result => {
+        return res.redirect('lists');
+      })
+      .catch(err => {
         res.json({
-          'status':false,
-          'message':'SOMETHING_WRONG',
-        })
-      }
-    })
+            'status':false,
+            'message':'SOMETHING_WRONG',
+            err
+          })
+      });
+    }else{
+      res.json({
+        'status':false,
+        'message':'SOMETHING_WRONG',
+      })
+    }
+  })
 }
 
 
 // product delete
 module.exports.productdelete = productdelete = async (req, res) => {
   let id = req.body.product_id;
-console.log(id)
+
   const { ProductList } = await connectToDatabase()
   ProductList.destroy({
     where: {
@@ -268,8 +265,8 @@ console.log(id)
   })
   .catch(err => {
     res.json({
-        'status':false,
-        'message':'SOMETHING_WRONG',
+      'status':false,
+      'message':'SOMETHING_WRONG',
     })
   })
 }

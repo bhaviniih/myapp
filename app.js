@@ -3,7 +3,13 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-var mailer = require('express-mailer'); // mail
+const mailer = require('express-mailer'); // mail
+
+const exphbs  = require('express-handlebars'); // view engine
+const path = require('path'); // path
+
+
+
 
 
 app.use(bodyParser.json({limit: '500mb'}));
@@ -33,10 +39,22 @@ const productRoutes = require('./routes/products');
 const orderRoutes 	= require('./routes/orders');
 
 
-app.use('/products', productRoutes);
+// app.use('/products', productRoutes);
+app.use('/', productRoutes);
 app.use('/users', userRoutes);
 
 
+// view engine start
+
+// app.use('/public/css', express.static(path.join(__dirname, 'assets')))
+app.use(express.static(__dirname + '/public'));
+
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
+ 
+app.get('/dashboard', function (req, res) {
+    res.render('dashboard');
+});
 
 
 module.exports = app;

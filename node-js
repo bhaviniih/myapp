@@ -54,7 +54,11 @@
   or
   npm install @hapi/joi
 
+  // nodemoon (package.json => "start": "nodemon server.js")
+  npm install --save-dev nodemon
 
+  // file path
+  npm install --save path
 
 
 ==== Mail Send ====
@@ -87,6 +91,13 @@
 
   // pdf
   
+
+==== create express-handlebars ====
+
+  // view engine
+  npm install express-handlebars
+
+
 
 ==== Node work flow ====
 

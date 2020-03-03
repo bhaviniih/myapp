@@ -1,5 +1,7 @@
 const connectToDatabase = require('../config/database');
 
+// ============ API end ============
+
 // get lists
 module.exports.list = list = async (req, res) => {
   const { ProductList } = await connectToDatabase()
@@ -18,7 +20,6 @@ module.exports.list = list = async (req, res) => {
         })
     })
 
-
     /*let productlists1 = ProductList.findAll({attributes:['id','name','price']}) // ProductList.findAll({})
   let productlists2 = ProductList.findAll({attributes:['id','name','price']})
 
@@ -29,8 +30,6 @@ module.exports.list = list = async (req, res) => {
           'data1':data_all,
           
       })*/
-
-
 }
 
 // save single
@@ -164,3 +163,115 @@ module.exports.email = email = async (req, res) => {
     res.send('Email sent successfully.');
   });
 }
+
+
+// ============ API end ============
+
+
+// ============ Simple CRUD Start ============
+
+// product lists
+module.exports.productlists = productlists = async (req, res) => {
+  const { ProductList } = await connectToDatabase()
+
+  var id = 1;
+  ProductList.findAll({attributes:['id','name','price'], raw: true}) // ProductList.findAll({})
+  // ProductList.findAll({attributes:['id','name','price'], where:{'id' : id}, raw: true})
+  .then(productlists => {
+    res.render('products/product', {
+      results: productlists
+    })
+  })
+  .catch(err => {
+    res.json({
+      'status':false,
+      'message':'SOMETHING_WRONG',
+      err
+    })
+  })
+}
+
+// product save
+module.exports.productsave = productsave = async (req, res) => {
+  console.log(req.body);
+  let name  = req.body.product_name;
+  let price = req.body.product_price;
+  const { ProductList } = await connectToDatabase()
+
+  ProductList.findAll({attributes:['id', 'name', 'price'] , where:{name: name, price: price}})
+  .then(data => {
+    if(!data.length){
+      ProductList.create({
+        name : name,
+        price : price
+      })
+      .then( result => {
+        return res.redirect('/lists');
+      })
+      .catch(err => {
+        res.json({
+            'status':false,
+            'message':'SOMETHING_WRONG',
+            err
+          })
+      });
+    }
+  })
+}
+
+// product update
+module.exports.productupdate = productupdate = async (req, res) => {
+  let id   = req.body.id;
+  let name = req.body.product_name;
+  let price = req.body.product_price;
+    const { ProductList } = await connectToDatabase()
+
+    ProductList.findByPk(id)
+    .then(data => {
+      if(data){
+        ProductList.update(
+          { name: name, price: price }, { where: { id: id } 
+        })
+        .then( result => {
+          return res.redirect('/lists');
+        })
+        .catch(err => {
+          res.json({
+              'status':false,
+              'message':'SOMETHING_WRONG',
+              err
+            })
+        });
+      }else{
+        res.json({
+          'status':false,
+          'message':'SOMETHING_WRONG',
+        })
+      }
+    })
+}
+
+
+// product delete
+module.exports.productdelete = productdelete = async (req, res) => {
+  let id = req.body.product_id;
+console.log(id)
+  const { ProductList } = await connectToDatabase()
+  ProductList.destroy({
+    where: {
+      id: id
+    },
+    raw: true
+  })
+  .then( (result) => {
+    return res.redirect('/lists');
+  })
+  .catch(err => {
+    res.json({
+        'status':false,
+        'message':'SOMETHING_WRONG',
+    })
+  })
+}
+
+// ============ Simple CRUD End ============

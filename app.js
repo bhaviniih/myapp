@@ -39,8 +39,7 @@ const productRoutes = require('./routes/products');
 const orderRoutes 	= require('./routes/orders');
 
 
-// app.use('/products', productRoutes);
-app.use('/', productRoutes);
+app.use('/products', productRoutes);
 app.use('/users', userRoutes);
 
 

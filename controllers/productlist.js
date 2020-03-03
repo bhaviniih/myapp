@@ -206,7 +206,7 @@ module.exports.productsave = productsave = async (req, res) => {
         price : price
       })
       .then( result => {
-        return res.redirect('/lists');
+        return res.redirect('lists');
       })
       .catch(err => {
         res.json({
@@ -233,7 +233,7 @@ module.exports.productupdate = productupdate = async (req, res) => {
           { name: name, price: price }, { where: { id: id } 
         })
         .then( result => {
-          return res.redirect('/lists');
+          return res.redirect('lists');
         })
         .catch(err => {
           res.json({
@@ -264,7 +264,7 @@ console.log(id)
     raw: true
   })
   .then( (result) => {
-    return res.redirect('/lists');
+    return res.redirect('lists');
   })
   .catch(err => {
     res.json({

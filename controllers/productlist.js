@@ -272,6 +272,4 @@ module.exports.productdelete = productdelete = async (req, res) => {
 }
 
 
-
-
 // ============ Simple CRUD End ============
